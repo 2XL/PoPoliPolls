@@ -9,7 +9,7 @@ Polls prediction, as 4th complex network assignment
     -> hashtags in per evaluar els politics
     -> hashtags out per opinio personal
   # utilitzar api twitter
-  # utilitzar servidor node
+  # utilitzar servidor node x distribució de carrega "harvest"
   # llista ordenada dels partits més influenciants per territori
   # botó magic per generar un pronostic dels resultats electorals en temps real
   # graf dels resultats electoral en temps real
