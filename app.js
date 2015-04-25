@@ -1,12 +1,17 @@
+console.log("app/start!")
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var stylus = require('stylus');
+var nib = require('nib');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+var diskdb = require('diskdb');
 
 var app = express();
 
@@ -58,3 +63,5 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+console.log("app/end!")
