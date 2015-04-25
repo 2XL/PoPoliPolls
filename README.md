@@ -1,4 +1,4 @@
-# PoPoliPolls
+# PoPuliPolls
 Polls prediction, as 4th complex network assignment
 
 
