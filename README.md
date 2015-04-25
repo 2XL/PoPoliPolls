@@ -3,7 +3,7 @@ Polls prediction, as 4th complex network assignment
 
 
 # Crear un front end
-  # llistar els 100 politics més influenciadors__
+  # llistar els 100 politics més influenciadors <br>
   # dels 100 mostrar un graf de relacions recents__
   # qualificar els @analitzador lexic__
     -> hashtags in per evaluar els politics__
