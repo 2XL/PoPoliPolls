@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+// libs
+
+var library = require('./lib/library.js');
+
 
 /*
  response attributes available
@@ -11,17 +15,11 @@ var router = express.Router();
  res.type -> Content-Type
  */
 
-var fortunes = [
-    "Conquer your fears or they will conquer you.",
-    "Rivers need springs.",
-    "Do not fear what you don't know.",
-    "You will have a pleasant surprise.",
-    "Whenever possible, keep it simple.",
-]
+console.log(library);
 
 var viewArgs = {
     title: "Index",
-    fortunes: fortunes[Math.floor(Math.random() * fortunes.length)]
+    fortunes: library.getFortune()
 }
 
 
