@@ -5,8 +5,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+// view Controllers
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var about = require('./routes/about');
+
+
+// APP server boilerplate framework
+
 var app = express();
 
 /*
@@ -27,23 +33,50 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', routes);
-app.use('/users', users);
+app.use(express.static(path.join(__dirname, 'public/*')));
+// equivalent
+// app.use(express.static(__dirname + '/public'));
 
-// catch 404 and forward to error handler
+
+
+
+
+
+// ROUTES
+
+app.use('/', routes);   // default index , per defecte busca home || index
+app.use('/about', about)
+//when -> url & then -> controller
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// catch 404 and forward to error handler (middleware)
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handlers
 
-// development error handler
+
+// ERROR handlers
+// development error handler (middleware)
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+      console.log("DEVELOPMENT ERROR!");
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -52,9 +85,10 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
+// PRODUCTION error handler (middleware)
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+    console.log("PRODUCTION ERROR!!!!")
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
