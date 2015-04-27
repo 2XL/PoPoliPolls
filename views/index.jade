@@ -1,13 +1,18 @@
 extends layout
 
 block styles
-
+block scripts
 block content
     #wrapper
         #logo
-            img(src='/img/poker.png', alt='Open xD')
+            img(src='/img/ok.gif', alt='Open xD')
     #display
         h1= title
         p Welcome to #{title}
 
+
     #footer
+        #logo
+            img(src='/img/poker.png', alt='Open xD')
+
+        blockquote #{fortunes}
