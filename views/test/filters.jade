@@ -1,0 +1,12 @@
+doctype
+html
+    head
+        style(type="text/css")
+            include:styl style.styl
+    body
+        include:md content.md
+
+        - books = [{title: "Godel Escher Bach: An Eternal Golden Braid", author: "Douglas Hofstadter"}, {title: "Slaughter-House Five", author: "Kurt Vonnegut"}];
+
+        for book in books
+            include book-format

@@ -5,28 +5,29 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var stylus = require('stylus');
-var nib = require('nib');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
-var diskdb = require('diskdb');
-
 var app = express();
 
+/*
+var diskdb = require('diskdb');
+var transformers = require('transformers');
+var nib = require('nib');
+var stylus = require('stylus');
+*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views/template'));
+
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', routes);
 app.use('/users', users);
 
@@ -65,3 +66,4 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 console.log("app/end!")
+console.log('Server stareted on localhost:3000; press Ctrl-C to terminate...');

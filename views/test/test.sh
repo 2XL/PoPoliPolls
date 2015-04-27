@@ -1,7 +1,7 @@
 #! /bin/bash
 
-# jade -> html
-jade --pretty test.jade
+# jade -> html & compiler ARGS
+jade --pretty test.jade --obj '{args: ["Hello this is Compiler Arg"]}'
 # jade -> js-debug
 jade --client test.jade
 # jade -> js
@@ -15,4 +15,4 @@ jade --client --no-debug test.jade
 echo "test.html"
 cat test.html
 echo "test.js"
-cat test.js
+# cat test.js
