@@ -1,9 +1,14 @@
-mongo = {
-    development: {
-        connectionString: ''
-    },
-    production: {
-        connectionString: ''
+module.exports = {
+    mongo: {
+        development: {
+            connectionString: ''
+        },
+        production: {
+            connectionString: ''
+        },
+        dbuser: "test",
+        dbpass: "test",
+        url: "mongodb://test:test@ds063859.mongolab.com:63859/torrentjs"
     }
 }
 /*

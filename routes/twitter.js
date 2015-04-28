@@ -35,7 +35,7 @@ router.get('/', function (req, res, next) {
         // callback
         console.log("CALLBACK");
         var viewArgs = {
-            title: "About",
+            title: "Twitter",
             content: queryResult
         };
         if (req.query.test !== undefined) {
@@ -43,7 +43,7 @@ router.get('/', function (req, res, next) {
             viewArgs.baseUrl = req.baseUrl.substring(1);
         }
         console.log(viewArgs);
-        res.render('about', viewArgs);
+        res.render('twitter', viewArgs);
 
 
     });

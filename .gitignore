@@ -12,3 +12,6 @@ PoPuliPolls.iml
 # *.py
 # *.bak
 # etc.
+
+# credentials
+credentials.js
