@@ -38,6 +38,19 @@ app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
 
+// Development Environments | Production Concerns
+switch (app.get('env')){
+    // default: development
+        // to switch it
+        // export NODE_ENV = production  // permanent
+        // NODE_ENV=production node app.js // temporal
+    case 'development':
+        // compact, colorful dev logging
+        app.use(require('morgan')('dev'));
+}
+
+
+
 // TEST goes HERE ~~~>
 
 
@@ -47,6 +60,55 @@ app.use('/', routes);   // default index , per defecte busca home || index
 app.use('/about', about);
 app.use('/test', test);
 //when -> url & then -> controller
+
+
+// disible information - security reasons (server profiling)
+// app.disable('x-powered-by');
+app.get('/headers', function (req, res) {
+    res.set('Content-Type', 'text/plain');
+    console.log('Hello Headers');
+    console.log(Object.keys(req.headers));
+    var s = '';
+    for (var name in req.headers)
+        s += name + ': ' + req.headers[name] + '\n'
+    console.log(s);
+    res.send(s);
+});
+
+app.get('/greeting', function (req, res) {
+    res.render('about', {
+        title: 'welcome',
+        style: req.query.style
+        //userid: req.cookie.userid,
+        // username: req.session.username
+    })
+});
+
+
+app.post('/process', function (req, res) {
+    console.log('Received contact from ' + req.body.name + '#' + req.body.email);
+    // do something with the contact
+    // call it with a bot
+    // store it in the database
+    try {
+        // do some magic
+        console.log('do magic!');
+        /*
+         return res.xhr ? res.render({success: true}) :
+         res.redirect(303, 'success');
+         */
+    } catch (e) {
+        console.log('do evil!!!');
+        /*
+         return res.xhr ? res.json({failed: 'failed'}) :
+         res.redirect(303, '/failed');
+         */
+    }
+
+    return res.redirect(303, '/');
+    // callback or notificate the user that his query was submited
+
+});
 
 
 console.log("ENVIRONMENT SETTING: " + app.get('env'));
@@ -59,6 +121,8 @@ app.use(function (req, res, next) {
     next(err);
 });
 
+
+// LISTENERS ONMIPRESENTS
 
 // ERROR handlers
 // development error handler (middleware)

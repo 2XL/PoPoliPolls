@@ -11,6 +11,8 @@ router.get('/', function (req, res, next) {
     res.status
     res.type -> Content-Type
      */
+
+
     var viewArgs = {
         title: "About"
     }

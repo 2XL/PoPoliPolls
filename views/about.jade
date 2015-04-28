@@ -3,3 +3,47 @@ extends layout
 block content
     h1= title
     p Welcome to #{title}
+    #formContainer
+        form#formulari(action="/process", method="post")
+            .form-group
+                input(type='hidden', name='secret', val='its hidden and secret')
+            .form-group
+                label(for='fieldColor') Favorite Color:
+                input#fieldColor.form-control(type='text', name='color')
+            .form-group
+                label(for='fieldEmail') Email:
+                input#fieldEmail.form-control(type='email', name='email')
+            .form-group
+                label(for='fieldName') Name:
+                input#fieldName.form-control(type='text', name='name')
+
+            button.btn.btn-primary(type='submit') Submit
+
+
+    script.
+        // ajax
+        $(document).ready(function(){
+
+            $('#formulari').on('submit', function(evt){
+                evt.preventDefault(); // evitar que es redireccioni
+                var action = $(this).attr('action');
+                var $container = $(this).closest('#formContainer');
+                // $VAR =  jQuery object representation of the dom object
+                $.ajax({
+                    url: action,
+                    type: 'POST',
+                    success: function(data){
+                        if(data.success){
+                            $container.html('<h1>ProcessOK</h1>');
+                        }else{
+                            $container.html('<h2>There was a Problem</h2>');
+                        }
+                    },
+                    error: function(){
+                        $container.html('<h3>There was a huge Problem</h3>');
+                    }
+                })
+            })
+
+        })
+
