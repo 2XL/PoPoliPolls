@@ -15,3 +15,8 @@ PoPuliPolls.iml
 
 # credentials
 credentials.js
+.package.json
+bin/.www
+bin/.www.js
+log
+
