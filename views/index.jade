@@ -3,13 +3,19 @@ extends layout
 block styles
 block scripts
 block content
+
+
+    #display
+    h1= title
+    p Welcome to #{title}
+
+
+    br
+    br
+
     #wrapper
         #logo
             img(src='/img/ok.gif', alt='Open xD')
-    #display
-        h1= title
-        p Welcome to #{title}
-
 
     #footer
         #logo

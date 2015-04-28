@@ -2,20 +2,35 @@ doctype html
 html
     head
         title=title
-
-
         //- Stylesheets
-        style(type="text/css")
-            include ../public/css/bootstrap.css
-            include ../public/css/style.css
+        link(rel="stylesheet" href="/css/bootstrap.css")
+        link(rel="stylesheet" href="/css/style.css")
+        link(rel="stylesheet" href="/vendor/mocha.css")
         block styles
         //- Javascripts
-        script(type="text/javascript")
-            include ../public/js/jquery.js
-            include ../public/js/bootstrap.js
-            include ../public/js/script.js
+        script(type="text/javascript" src="/js/jquery.js")
+        script(type="text/javascript" src="js/bootstrap.js")
+        script(type="text/javascript" src="js/script.js")
+        script(type="text/javascript" src="/vendor/mocha.js")
+        script(type="text/javascript" src="/vendor/chai.js")
         block scripts
     body
+        - var isTest='test'
+        a#home.btn.btn-primary(href='/') Home
+        a#test.btn.btn-default(href='/test?#{isTest}') Test
+        a#about.btn.btn-danger(href='/about?#{isTest}') About
+        block header
         //- Content
+        h1 Complex Network 2014-2015
         block content
-
+        if test !== undefined
+            p test loaded
+            - console.log(test);
+            - console.log("THIS IS THE END");
+            #mocha
+            script(type="text/javascript" src='/qa/tests-#{baseUrl}.js')
+            if test !== ""
+                script(type="text/javascript" src='/qa/tests-#{test}page.js')
+        else
+            -console.log("NO TEST ");
+            p no test is load

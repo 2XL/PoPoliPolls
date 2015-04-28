@@ -3,7 +3,7 @@ var router = express.Router();
 
 // libs
 
-var library = require('./lib/library.js');
+var library = require('../lib/library/library.js');
 
 
 /*
@@ -15,7 +15,6 @@ var library = require('./lib/library.js');
  res.type -> Content-Type
  */
 
-console.log(library);
 
 var viewArgs = {
     title: "Index",
@@ -25,10 +24,7 @@ var viewArgs = {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-
-
     res.render('index', viewArgs);
-
 });
 
 module.exports = router;

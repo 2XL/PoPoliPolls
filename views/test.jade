@@ -1,0 +1,31 @@
+extends layout
+
+block styles
+
+
+block scripts
+    script.
+        $(document).ready(function () {
+            $('input[name="who"]').val(document.referrer);
+            console.info(document.referrer);
+        })
+
+block content
+    h1= title
+
+    h5 This is a Magic Form
+
+    form(role='form')
+        // label#who who
+        input#who(type='hidden', name="who")
+        .form-group
+            label#name name
+            input#name.form-control(type='text', name='name')
+
+        input.btn.btn-sm(type='submit', value='Submit')
+
+
+
+
+
+

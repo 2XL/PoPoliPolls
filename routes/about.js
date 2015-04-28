@@ -14,6 +14,11 @@ router.get('/', function (req, res, next) {
     var viewArgs = {
         title: "About"
     }
+    if (req.query.test !== undefined) {
+        console.log("TEST: " + req.query.test);
+        viewArgs.test = req.query.test;
+        viewArgs.baseUrl = req.baseUrl.substring(1)
+    }
     res.render('about', viewArgs);
 });
 
