@@ -4,5 +4,9 @@ block content
     h1= title
     p Welcome to #{title}
     - console.log(content);
-    pre #{JSON.stringify(content)}
+    pre #{JSON.stringify(mongodb)}
 
+
+    list()
+
+    pre #{JSON.stringify(twitter.result, null, 2)}
