@@ -1,5 +1,6 @@
 console.log("app/start!");
 var express = require('express');
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -37,7 +38,14 @@ app.use(cookieParser());
 // equivalent
 app.use(express.static(__dirname + '/public'));
 
-
+// BD geos HERE +++>
+var mongoose = require('mongoose');
+var opts = {
+    server: {
+        socketOptions: {keepAlive: 1}
+    }
+};
+var connectionString = "mongodb://test:test@ds063859.mongolab.com:63859/torrentjs";
 // Development Environments | Production Concerns
 switch (app.get('env')){
     // default: development
@@ -46,8 +54,22 @@ switch (app.get('env')){
         // NODE_ENV=production node app.js // temporal
     case 'development':
         // compact, colorful dev logging
+        mongoose.connect(connectionString, opts);
         app.use(require('morgan')('dev'));
+        break;
+    case 'production':
+        mongoose.connect(connectionString, opts);
+        app.use(require('express-logger')({
+            path: __dirname +'/log/requests.log'
+        }))
+        break;
+    default:
+        console.log("No logging plugin selected...");
+        break;
 }
+
+
+
 
 
 
@@ -151,6 +173,8 @@ app.use(function (err, req, res, next) {
 
 
 module.exports = app;
+
+
 
 console.log("app/end!");
 console.log('Server stareted on localhost:3000; press Ctrl-C to terminate...');
